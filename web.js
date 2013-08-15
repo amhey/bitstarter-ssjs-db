@@ -7,12 +7,16 @@ var async   = require('async')
   , https   = require('https')
   , db      = require('./models');
 
+// app.set(a,b) just sets a to the value of b using Express API - see http://expressjs.com/api.html
 var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 8080);
 
+// A routing function tells node.js what to do with a URL
 // Render homepage (note trailing slash): example.com/
+// To get data it uses fs- part of node.js - see http://nodejs.org/api/fs.html - fs means file system
+// app.get and response.send come from express - not sure why res instead of response is used?
 app.get('/', function(request, response) {
   var data = fs.readFileSync('index.html').toString();
   response.send(data);
